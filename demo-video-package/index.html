@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creator Operating Suite — Demo Video Package</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F6F4EF;
+    --ink: #1A1A1A;
+    --ink-soft: #3A3A3A;
+    --muted: #8A8378;
+    --rule: #D9D4C7;
+    --accent: #C8553D;
+    --accent-soft: #E8D8C4;
+    --ok: #3F7A4A;
+
+    --display: "Source Serif Pro", "Tiempos Headline", Georgia, serif;
+    --body: "Inter", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--body);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  body {
+    padding: 96px 96px 160px;
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 720px) {
+    body { padding: 48px 32px 96px; }
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .eyebrow::after {
+    content: "";
+    flex: 0 0 160px;
+    height: 1px;
+    background: var(--ink);
+  }
+
+  h1.headline {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin-top: 28px;
+    max-width: 16ch;
+    text-wrap: pretty;
+  }
+  h1.headline em {
+    font-style: normal;
+    background: var(--accent-soft);
+    padding: 0 .15em;
+  }
+
+  .deck {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(22px, 2.2vw, 28px);
+    line-height: 1.35;
+    color: var(--ink-soft);
+    margin-top: 32px;
+    max-width: 56ch;
+    font-style: italic;
+  }
+
+  .meta {
+    margin-top: 56px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .meta span::before { content: "·  "; color: var(--rule); margin-right: 4px; }
+  .meta span:first-child::before { content: ""; }
+
+  hr.rule {
+    border: 0;
+    border-top: 1px solid var(--rule);
+    margin: 80px 0;
+  }
+
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+  }
+
+  h2.section {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 48px;
+    max-width: 24ch;
+  }
+
+  .files {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+  }
+  @media (max-width: 720px) {
+    .files { grid-template-columns: 1fr; }
+  }
+
+  .file {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 32px 28px 36px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+    transition: background-color 180ms ease;
+  }
+  .file:nth-child(odd) {
+    border-right: 1px solid var(--rule);
+    padding-right: 36px;
+  }
+  .file:nth-child(even) {
+    padding-left: 36px;
+  }
+  @media (max-width: 720px) {
+    .file:nth-child(odd) { border-right: 0; padding-right: 0; }
+    .file:nth-child(even) { padding-left: 0; }
+  }
+  .file:hover {
+    background: rgba(232, 216, 196, 0.4);
+  }
+  .file:hover .file-arrow { transform: translateX(4px); }
+
+  .file-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+  }
+
+  .file-num {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .file-arrow {
+    font-family: var(--mono);
+    color: var(--ink);
+    transition: transform 200ms ease;
+    font-size: 18px;
+  }
+
+  .file-title {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 1.15;
+    margin-top: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .file-desc {
+    font-family: var(--body);
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin-top: 10px;
+    max-width: 52ch;
+  }
+
+  .file-path {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 18px;
+    display: block;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 56px;
+    margin-top: 8px;
+  }
+  @media (max-width: 720px) {
+    .principles { grid-template-columns: 1fr; }
+  }
+  .principle {
+    border-top: 1px solid var(--ink);
+    padding-top: 18px;
+  }
+  .principle-num {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+  .principle-text {
+    font-family: var(--display);
+    font-size: 22px;
+    line-height: 1.3;
+    margin-top: 10px;
+    color: var(--ink);
+    max-width: 32ch;
+  }
+  .principle-text mark {
+    background: var(--accent-soft);
+    color: inherit;
+    padding: 0 .15em;
+  }
+
+  .cta {
+    margin-top: 24px;
+    border: 1px solid var(--ink);
+    padding: 56px 48px;
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .cta h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: clamp(36px, 4vw, 56px);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    max-width: 22ch;
+  }
+  .cta .url {
+    font-family: var(--mono);
+    font-size: 16px;
+    color: var(--paper);
+    margin-top: 36px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(246, 244, 239, 0.25);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .cta .url a {
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(246, 244, 239, 0.4);
+  }
+  .cta .url-meta { color: rgba(246, 244, 239, 0.55); font-size: 13px; }
+
+  footer {
+    margin-top: 96px;
+    padding-top: 32px;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="eyebrow">CMD · HANDS-OFF CREATOR OPERATING SUITE · V1</div>
+
+    <h1 class="headline">Claude deixa de ser chat e vira <em>sistema de trabalho</em>.</h1>
+
+    <p class="deck">Pacote completo para gravar, editar e publicar a demo pública de 2 minutos da Creator Operating Suite. Dez arquivos markdown, prontos para o repositório.</p>
+
+    <div class="meta">
+      <span>10 deliverables</span>
+      <span>markdown ready-to-ship</span>
+      <span>2-minute demo</span>
+      <span>public · MIT-style</span>
+    </div>
+  </header>
+
+  <hr class="rule" />
+
+  <section>
+    <div class="section-eyebrow">01 ──── Deliverables</div>
+    <h2 class="section">O pacote, arquivo por arquivo.</h2>
+
+    <div class="files">
+
+      <a class="file" href="video-concept.md">
+        <div class="file-row">
+          <span class="file-num">01</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">Video concept</div>
+        <p class="file-desc">Título, promessa, emoção desejada, público-alvo e CTA. O briefing do pacote inteiro.</p>
+        <code class="file-path">video-concept.md</code>
+      </a>
+
+      <a class="file" href="120-second-script.md">
+        <div class="file-row">
+          <span class="file-num">02</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">120-second script</div>
+        <p class="file-desc">Roteiro bloco-a-bloco: problema, dor, tese, walkthrough, before/after, prova, CTA. Captions on-screen sincronizadas.</p>
+        <code class="file-path">120-second-script.md</code>
+      </a>
+
+      <a class="file" href="screen-recording-shotlist.md">
+        <div class="file-row">
+          <span class="file-num">03</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">Screen recording shotlist</div>
+        <p class="file-desc">12 cenas. Duração, o que mostrar, o que falar, zoom/crop e texto na tela. Para abrir durante a gravação.</p>
+        <code class="file-path">screen-recording-shotlist.md</code>
+      </a>
+
+      <a class="file" href="visual-style-guide.md">
+        <div class="file-row">
+          <span class="file-num">04</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">Visual style guide</div>
+        <p class="file-desc">Paleta, tipografia, ritmo, captions, lower thirds, cards e movimento. Editorial · GitHub-native · sem hype.</p>
+        <code class="file-path">visual-style-guide.md</code>
+      </a>
+
+      <a class="file" href="on-screen-copy.md">
+        <div class="file-row">
+          <span class="file-num">05</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">On-screen copy</div>
+        <p class="file-desc">Todas as frases que aparecem na tela. Cada uma com ≤ 7 palavras por linha, ≤ 2 linhas por frame.</p>
+        <code class="file-path">on-screen-copy.md</code>
+      </a>
+
+      <a class="file" href="thumbnail-options.md">
+        <div class="file-row">
+          <span class="file-num">06</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">Thumbnail options</div>
+        <p class="file-desc">Três variações: direta, provocativa, técnica-traduzida. Composição, copy e regras de export por canal.</p>
+        <code class="file-path">thumbnail-options.md</code>
+      </a>
+
+      <a class="file" href="readme-video-section.md">
+        <div class="file-row">
+          <span class="file-num">07</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">README video section</div>
+        <p class="file-desc">Bloco markdown pronto para colar no README do repositório, abaixo da introdução.</p>
+        <code class="file-path">readme-video-section.md</code>
+      </a>
+
+      <a class="file" href="linkedin-demo-post.md">
+        <div class="file-row">
+          <span class="file-num">08</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">LinkedIn post</div>
+        <p class="file-desc">Três versões (principal, curta, vulnerável) + comentário fixado + follow-ups de 24h e 7 dias.</p>
+        <code class="file-path">linkedin-demo-post.md</code>
+      </a>
+
+      <a class="file" href="medium-demo-section.md">
+        <div class="file-row">
+          <span class="file-num">09</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">Medium embed section</div>
+        <p class="file-desc">Trecho pronto para o artigo Medium: por que gravei a demo, o que observar, como isso valida a tese.</p>
+        <code class="file-path">medium-demo-section.md</code>
+      </a>
+
+      <a class="file" href="production-checklist.md">
+        <div class="file-row">
+          <span class="file-num">10</span>
+          <span class="file-arrow">→</span>
+        </div>
+        <div class="file-title">Production checklist</div>
+        <p class="file-desc">Checklist linear D-1 → D+2: gravação, edição, export, publicação e métricas pós. 4–6h focadas.</p>
+        <code class="file-path">production-checklist.md</code>
+      </a>
+
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section>
+    <div class="section-eyebrow">02 ──── Non-negotiables</div>
+    <h2 class="section">Regras que valem para todos os arquivos.</h2>
+
+    <div class="principles">
+      <div class="principle">
+        <div class="principle-num">01</div>
+        <p class="principle-text">O vídeo precisa ser <mark>compreensível sem áudio</mark>.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">02</div>
+        <p class="principle-text">CTA único: <mark>open the repo, test the starter, send feedback</mark>.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">03</div>
+        <p class="principle-text">Sem RAG, embedding, vector store ou progressive disclosure no vídeo.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">04</div>
+        <p class="principle-text">Sem rosto, emoji ou logo Anthropic/Claude nas thumbs.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">05</div>
+        <p class="principle-text">O repo é público <em>em evolução</em> — nunca apresentado como produto final.</p>
+      </div>
+      <div class="principle">
+        <div class="principle-num">06</div>
+        <p class="principle-text">Traduz "RAG" como "Claude carrega o contexto certo na hora certa".</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section class="cta">
+    <h3>Open the repo.<br>Test the starter.<br>Send feedback.</h3>
+    <div class="url">
+      <a href="https://github.com/Aurelio-Hq/Content-creator-Day-to-day-routine" target="_blank" rel="noopener">
+        github.com/Aurelio-Hq/Content-creator-Day-to-day-routine
+      </a>
+      <span class="url-meta">public · MIT-style · feedback welcome</span>
+    </div>
+  </section>
+
+  <footer>
+    <span>demo-video-package · v1</span>
+    <span>10 files · markdown · ready-to-ship</span>
+  </footer>
+
+</body>
+</html>

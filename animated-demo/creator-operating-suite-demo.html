@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creator Operating Suite — Animated Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #0a0a0a; height: 100%; overflow: hidden; }
+  #root { position: absolute; inset: 0; }
+</style>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root" data-screen-label="t=0:00"></div>
+
+  <script type="text/babel" src="animations.jsx"></script>
+  <script type="text/babel" src="scenes-a.jsx"></script>
+  <script type="text/babel" src="scenes-b.jsx"></script>
+
+  <script type="text/babel">
+    // ── Scene timing ───────────────────────────────────────
+    // Total duration: 85s
+    const SCENES = {
+      problem:     [ 0, 10],
+      pain:        [10, 20],
+      thesis:      [20, 30],
+      layers:      [30, 45],
+      github:      [45, 60],
+      beforeAfter: [60, 75],
+      cta:         [75, 85],
+    };
+    const TOTAL = 85;
+
+    function Demo() {
+      return (
+        <Stage
+          width={1920}
+          height={1080}
+          duration={TOTAL}
+          background="#F6F4EF"
+          loop={true}
+          autoplay={true}
+          persistKey="creator-operating-suite-demo"
+        >
+          <TimeLabel />
+          <SceneProblem      start={SCENES.problem[0]}     end={SCENES.problem[1]} />
+          <SceneePain        start={SCENES.pain[0]}        end={SCENES.pain[1]} />
+          <SceneThesis       start={SCENES.thesis[0]}      end={SCENES.thesis[1]} />
+          <SceneLayers       start={SCENES.layers[0]}      end={SCENES.layers[1]} />
+          <SceneGitHub       start={SCENES.github[0]}      end={SCENES.github[1]} />
+          <SceneBeforeAfter  start={SCENES.beforeAfter[0]} end={SCENES.beforeAfter[1]} />
+          <SceneCTA          start={SCENES.cta[0]}         end={SCENES.cta[1]} />
+        </Stage>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+  </script>
+</body>
+</html>
